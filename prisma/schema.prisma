@@ -1,6 +1,7 @@
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
@@ -23,7 +24,7 @@ model Producto {
 }
 
 /*
-Generado usando tabla sql server
+Generado usando npx prisma db pull de la tabla sql server
 create table productos (
     idProducto int identity(1,1) primary key,
     nombre nvarchar(255) not null,
