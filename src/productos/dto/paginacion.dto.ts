@@ -1,4 +1,4 @@
 export class PaginacionDto {
-  pagina?: number = 1;
-  tamano?: number = 10;
+  pagina?: string = "1";
+  tamano?: string = "10";
 }

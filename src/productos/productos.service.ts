@@ -18,8 +18,8 @@ export class ProductosService {
   async findActivo(
     @Query() paginacion: PaginacionDto,
   ): Promise<ProductoModel[]> {
-    const pagina = paginacion.pagina || 1;
-    const tamano = paginacion.tamano || 10;
+    const pagina = parseInt(paginacion.pagina || '1');
+    const tamano = parseInt(paginacion.tamano || '10');
     const saltar = (pagina - 1) * tamano;
     return this.prisma.producto.findMany({
       where: { activo: true },
