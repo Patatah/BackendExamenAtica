@@ -26,11 +26,23 @@ export class ProductosService {
     });
   }
 
-  update(id: number, updateProductoDto: UpdateProductoDto) {
-    return `This action updates a #${id} producto`;
+  async update(id: number, updateProductoDto: UpdateProductoDto): Promise<ProductoModel> {
+    return this.prisma.producto.update({
+      where: { idProducto: id },
+      data: {
+        ...updateProductoDto,
+        ultimaActualizacion: new Date(),
+      },
+    });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} producto`;
+  async remove(id: number): Promise<ProductoModel> {
+    return this.prisma.producto.update({
+      where: { idProducto: id },
+      data: {
+        activo: false,
+        ultimaActualizacion: new Date(),
+      },
+    });
   }
 }
