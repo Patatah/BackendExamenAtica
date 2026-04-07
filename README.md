@@ -1,4 +1,4 @@
-<img width="374" height="214" alt="imagen" src="https://github.com/user-attachments/assets/2bcbc096-c69c-4f03-aceb-361001b80abc" />## Descripcion
+## Descripcion
 Backend con NestJS (usando typescript y ORM prisma). Base de datos **Microsoft SQL Server**
 
 ## Comandos para correr en local
