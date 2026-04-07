@@ -11,3 +11,17 @@ generator client {
 datasource db {
   provider = "sqlserver"
 }
+
+model Producto {
+  id Int @id @default(autoincrement())
+  nombre String @db.NVarChar(255)
+  descripcion String? @db.NVarChar(Max)
+  precio Decimal @db.Decimal(10, 2)
+  stock Int @default(0)
+  categoria String? @db.NVarChar(100)
+  activo Boolean @default(true)
+  fecha_creacion DateTime? @default(now()) @db.DateTime2
+  fecha_actualizacion DateTime? @default(now()) @db.DateTime2
+
+  @@map("productos")
+}
