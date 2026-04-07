@@ -28,37 +28,17 @@ async function rawSqlSeed() {
 				${5},
 				${"Post rock"},
 				${true}
-			)`;
-
-		await t.$executeRaw`
-			INSERT INTO [productos] (
-				[nombre],
-				[urlFoto],
-				[descripcion],
-				[precio],
-				[stock],
-				[categoria],
-				[activo]
-			) VALUES (
-				${"Jhonny Foreigner - Waited Up 'til It Was Light"},
-				${"https://upload.wikimedia.org/wikipedia/en/3/37/Waiteduptilitwaslight.jpg"},
-				${"Album lleno de energía punk de 2008. La banda inglesa Johnny Foreigner sigue activa."},
-				${250.50},
-				${10},
-				${"Emo pop"},
+			),
+            (
+				${"Candelabro - Deseo, carne y voluntad"},
+				${"https://images.genius.com/720bd7120f40e59e69041028c8464f59.1000x1000x1.png"},
+				${"Album de la banda chilena candelabro. Idioma español."},
+				${120.18},
+				${18},
+				${"Art rock"},
 				${true}
-			)`;
-
-		await t.$executeRaw`
-			INSERT INTO [productos] (
-				[nombre],
-				[urlFoto],
-				[descripcion],
-				[precio],
-				[stock],
-				[categoria],
-				[activo]
-			) VALUES (
+			),
+            (
 				${"Candelabro - Deseo, carne y voluntad"},
 				${"https://images.genius.com/720bd7120f40e59e69041028c8464f59.1000x1000x1.png"},
 				${"Album de la banda chilena candelabro. Idioma español."},
