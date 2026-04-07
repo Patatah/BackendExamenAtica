@@ -15,18 +15,23 @@ export class ProductosService {
     });
   }
 
-  async findActivo(@Query() paginacion: PaginacionDto): Promise<ProductoModel[]> {
+  async findActivo(
+    @Query() paginacion: PaginacionDto,
+  ): Promise<ProductoModel[]> {
     const pagina = paginacion.pagina || 1;
     const tamano = paginacion.tamano || 10;
     const saltar = (pagina - 1) * tamano;
     return this.prisma.producto.findMany({
       where: { activo: true },
       skip: saltar,
-      take: tamano
+      take: tamano,
     });
   }
 
-  async update(id: number, updateProductoDto: UpdateProductoDto): Promise<ProductoModel> {
+  async update(
+    id: number,
+    updateProductoDto: UpdateProductoDto,
+  ): Promise<ProductoModel> {
     return this.prisma.producto.update({
       where: { idProducto: id },
       data: {
@@ -39,10 +44,7 @@ export class ProductosService {
   async remove(id: number): Promise<ProductoModel> {
     return this.prisma.producto.update({
       where: { idProducto: id },
-      data: {
-        activo: false,
-        ultimaActualizacion: new Date(),
-      },
+      data: { activo: false, ultimaActualizacion: new Date() },
     });
   }
 }
