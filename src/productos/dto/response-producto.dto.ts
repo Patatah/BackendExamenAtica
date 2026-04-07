@@ -7,10 +7,11 @@ import {
   MaxLength,
 } from 'class-validator';
 
-// https://github.com/typestack/class-validator#validation-decorators
-// https://github.com/typestack/class-transformer/blob/develop/sample/sample1-simple-usage/Photo.ts
+export class ResponseProductoDto {
+  @IsNotEmpty()
+  @IsNumber()
+  idProducto: number;
 
-export class CreateProductoDto {
   @IsNotEmpty()
   @IsString()
   @MaxLength(255)
