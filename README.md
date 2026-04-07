@@ -28,7 +28,11 @@ create table productos (
 );
 
 ## Endpoints
-Hay 4 endpoints para este CRUD, el get paginado, el post para crear un nuevo prouducto, el patch para editar y delete que hace un borrado logico sobre una tupla.
+Hay 4 endpoints en productoController: 
+Un get paginado
+Post para crear un nuevo prouducto
+Patch para editar
+Delete que hace un borrado logico sobre una tupla
 <img width="374" height="214" alt="imagen" src="https://github.com/user-attachments/assets/c57fdffb-65b1-4968-b856-b70a84b4d979" />
 
 GET http://localhost:3000/productos?pagina=1&tamano=10
