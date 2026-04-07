@@ -1,19 +1,29 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Query } from '@nestjs/common';
 import { CreateProductoDto } from './dto/create-producto.dto';
 import { UpdateProductoDto } from './dto/update-producto.dto';
+import { PrismaService } from '../prisma.service';
+import { ProductoModel } from 'generated/prisma/models/Producto';
+import { PaginacionDto } from './dto/paginacion.dto';
 
 @Injectable()
 export class ProductosService {
-  create(createProductoDto: CreateProductoDto) {
-    return 'This action adds a new producto';
+  constructor(private prisma: PrismaService) {}
+
+  async create(createProductoDto: CreateProductoDto): Promise<ProductoModel> {
+    return this.prisma.producto.create({
+      data: createProductoDto,
+    });
   }
 
-  findAll() {
-    return `This action returns all productos`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} producto`;
+  async findActivo(@Query() paginacion: PaginacionDto): Promise<ProductoModel[]> {
+    const pagina = paginacion.pagina || 1;
+    const tamano = paginacion.tamano || 10;
+    const saltar = (pagina - 1) * tamano;
+    return this.prisma.producto.findMany({
+      where: { activo: true },
+      skip: saltar,
+      take: tamano
+    });
   }
 
   update(id: number, updateProductoDto: UpdateProductoDto) {
