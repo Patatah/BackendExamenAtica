@@ -1,8 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Get a free hosted Postgres database in seconds: `npx create-db`
-
 generator client {
   provider = "prisma-client"
   output   = "../generated/prisma"
@@ -13,15 +8,32 @@ datasource db {
 }
 
 model Producto {
-  id Int @id @default(autoincrement())
-  nombre String @db.NVarChar(255)
-  descripcion String? @db.NVarChar(Max)
-  precio Decimal @db.Decimal(10, 2)
-  stock Int @default(0)
-  categoria String? @db.NVarChar(100)
-  activo Boolean @default(true)
-  fecha_creacion DateTime? @default(now()) @db.DateTime2
-  fecha_actualizacion DateTime? @default(now()) @db.DateTime2
+  idProducto          Int       @id(map: "PK__producto__07F4A132083D5FB5") @default(autoincrement())
+  nombre              String    @db.NVarChar(255)
+  urlFoto             String
+  descripcion         String?   @db.NVarChar(4000)
+  precio              Decimal   @db.Decimal(10, 2)
+  stock               Int       @default(0, map: "DF__productos__stock__4AB81AF0")
+  categoria           String?   @db.NVarChar(100)
+  activo              Boolean   @default(true, map: "DF__productos__activ__4BAC3F29")
+  creado              DateTime? @default(now(), map: "DF__productos__cread__4CA06362") @db.DateTime
+  ultimaActualizacion DateTime? @default(now(), map: "DF__productos__ultim__4D94879B") @db.DateTime
 
   @@map("productos")
 }
+
+/*
+Generado usando tabla sql server
+create table productos (
+    idProducto int identity(1,1) primary key,
+    nombre nvarchar(255) not null,
+    urlFoto nvarchar(1000) not null,
+    descripcion nvarchar(4000) null,
+    precio decimal(10,2) not null,
+    stock int not null default 0,
+    categoria nvarchar(100) null,
+    activo bit not null default 1,
+    creado datetime default getdate(),
+    ultimaActualizacion datetime default getdate()
+);
+*/
