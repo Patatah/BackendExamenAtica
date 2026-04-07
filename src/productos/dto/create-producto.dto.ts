@@ -14,11 +14,11 @@ export class CreateProductoDto {
   @IsNotEmpty()
   @IsString()
   @MaxLength(255)
-  nombre: string;
+  nombre!: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  urlFoto: string;
+  urlFoto?: string;
 
   @IsOptional()
   @IsString()
@@ -28,7 +28,7 @@ export class CreateProductoDto {
   @IsNotEmpty()
   @IsNumber()
   @Type(() => Number)
-  precio: number;
+  precio!: number;
 
   @IsOptional()
   @IsNumber()

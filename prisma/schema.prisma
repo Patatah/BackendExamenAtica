@@ -1,6 +1,6 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -9,16 +9,16 @@ datasource db {
 }
 
 model Producto {
-  idProducto          Int       @id(map: "PK__producto__07F4A132083D5FB5") @default(autoincrement())
+  idProducto          Int       @id(map: "PK__producto__07F4A132D9D1C74D") @default(autoincrement())
   nombre              String    @db.NVarChar(255)
-  urlFoto             String
+  urlFoto             String?
   descripcion         String?   @db.NVarChar(4000)
   precio              Decimal   @db.Decimal(10, 2)
-  stock               Int       @default(0, map: "DF__productos__stock__4AB81AF0")
+  stock               Int       @default(0, map: "DF__productos__stock__59FA5E80")
   categoria           String?   @db.NVarChar(100)
-  activo              Boolean   @default(true, map: "DF__productos__activ__4BAC3F29")
-  creado              DateTime? @default(now(), map: "DF__productos__cread__4CA06362") @db.DateTime
-  ultimaActualizacion DateTime? @default(now(), map: "DF__productos__ultim__4D94879B") @db.DateTime
+  activo              Boolean   @default(true, map: "DF__productos__activ__5AEE82B9")
+  creado              DateTime? @default(now(), map: "DF__productos__cread__5BE2A6F2") @db.DateTime
+  ultimaActualizacion DateTime? @default(now(), map: "DF__productos__ultim__5CD6CB2B") @db.DateTime
 
   @@map("productos")
 }
@@ -28,7 +28,7 @@ Generado usando npx prisma db pull de la tabla sql server
 create table productos (
     idProducto int identity(1,1) primary key,
     nombre nvarchar(255) not null,
-    urlFoto nvarchar(1000) not null,
+    urlFoto nvarchar(1000) null,
     descripcion nvarchar(4000) null,
     precio decimal(10,2) not null,
     stock int not null default 0,
