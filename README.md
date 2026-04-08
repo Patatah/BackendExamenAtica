@@ -29,7 +29,7 @@ create table productos (
 
 ## Endpoints
 Hay 4 endpoints en productoController: 
-- Un get paginado
+- Un get paginado y con opción de busqueda
 - Post para crear un nuevo prouducto
 - Patch para editar
 - Delete que hace un borrado logico sobre una tupla
