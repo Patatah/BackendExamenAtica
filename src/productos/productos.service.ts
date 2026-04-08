@@ -4,6 +4,7 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 import { PrismaService } from '../prisma.service';
 import { ProductoModel } from 'generated/prisma/models/Producto';
 import { PaginacionDto } from './dto/paginacion.dto';
+import { PaginacionResponseDto } from './dto/pagination-response.dto';
 
 @Injectable()
 export class ProductosService {
@@ -17,15 +18,42 @@ export class ProductosService {
 
   async findActivo(
     @Query() paginacion: PaginacionDto,
-  ): Promise<ProductoModel[]> {
+  ): Promise<PaginacionResponseDto> {
     const pagina = parseInt(paginacion.pagina || '1');
     const tamano = parseInt(paginacion.tamano || '10');
     const saltar = (pagina - 1) * tamano;
-    return this.prisma.producto.findMany({
-      where: { activo: true },
-      skip: saltar,
-      take: tamano,
-    });
+
+    //https://www.prisma.io/docs/orm/prisma-client/queries/crud#filter-records  
+    const where = {
+      activo: true,
+      ...(paginacion.busqueda && {
+        OR: [
+          { nombre: { contains: paginacion.busqueda } },
+          { descripcion: { contains: paginacion.busqueda } },
+        ],
+      }),
+    };
+
+    const [productos, total] = await Promise.all([
+      this.prisma.producto.findMany({
+        where,
+        skip: saltar,
+        take: tamano,
+      }),
+      this.prisma.producto.count({
+        where,
+      }),
+    ]);
+
+    const totalPaginas = Math.ceil(total / tamano);
+
+    return {
+      data: productos,
+      total,
+      pagina,
+      tamano,
+      totalPaginas,
+    };
   }
 
   async update(
