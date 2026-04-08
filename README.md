@@ -46,3 +46,5 @@ PATCH http://localhost:3000/productos/1
   body: {"nombre": "Ejemplo de edicion", "precio": 456, "stock": 789}
   
 DELETE http://localhost:3000/productos/1 
+
+El frontend se encuentra en Patatah/FrontendExamenAtica
