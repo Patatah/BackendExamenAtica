@@ -1,5 +1,5 @@
 ## Descripcion
-Backend con NestJS (usando typescript y ORM prisma). Base de datos **Microsoft SQL Server**
+Backend con NestJS (Object-Relational Mapping con Prisma). Base de datos **Microsoft SQL Server**.
 
 ## Comandos para correr en local
 ```bash
