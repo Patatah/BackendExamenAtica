@@ -13,7 +13,7 @@ Borra los datos de la tabla e inserta los datos de ejemplo.
 ```bash
 npx prisma db seed
 ```
-## Tabla (generada con npx prisma migrate deploy)
+## Tabla (script en archivo CrearDbAtica.sql)
 create table productos (
     idProducto int identity(1,1) primary key,
     nombre nvarchar(255) not null,
@@ -26,6 +26,7 @@ create table productos (
     creado datetime default getdate(),
     ultimaActualizacion datetime default getdate()
 );
+Despúes de crear la tabla se creó el esquema de prisma usando npx prisma migrate deploy.
 
 ## Endpoints
 Hay 4 endpoints en productoController: 
