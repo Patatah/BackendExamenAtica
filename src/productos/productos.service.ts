@@ -4,7 +4,7 @@ import { UpdateProductoDto } from './dto/update-producto.dto';
 import { PrismaService } from '../prisma.service';
 import { ProductoModel } from 'generated/prisma/models/Producto';
 import { PaginacionDto } from './dto/paginacion.dto';
-import { PaginacionResponseDto } from './dto/pagination-response.dto';
+import { PaginacionResponseDto } from './dto/paginacion-response.dto';
 
 @Injectable()
 export class ProductosService {
